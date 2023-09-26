@@ -48,15 +48,19 @@ print(cpu_csv)
 
 # cpu_csv_subset = cpu_csv.head(20)
 
-matplotlib.pyplot.plot(cpu_csv["rownames"], cpu_csv["perf"], color="red", label="Actual Performance", marker="o")
+matplotlib.pyplot.scatter(cpu_csv["perf"], cpu_csv["chmin"], color="red", marker="o")
 
-matplotlib.pyplot.plot(cpu_csv["rownames"], cpu_csv["estperf"], color="blue", label="Estimated Performance", marker="x")
+# matplotlib.pyplot.plot(cpu_csv["perf"], cpu_csv["cach"], color="red", label="Performance", marker="o")
 
-matplotlib.pyplot.xlabel("Now names")
+# matplotlib.pyplot.plot(cpu_csv["rownames"], cpu_csv["perf"], color="red", label="Actual Performance", marker="o")
+
+# matplotlib.pyplot.plot(cpu_csv["rownames"], cpu_csv["estperf"], color="blue", label="Estimated Performance", marker="x")
+
+matplotlib.pyplot.xlabel("Performance rate")
 matplotlib.pyplot.xticks(rotation=45)
-matplotlib.pyplot.ylabel("Performance Value")
-matplotlib.pyplot.title("Actual Performance vs Estimated Performance")
-matplotlib.pyplot.legend()
+matplotlib.pyplot.ylabel("Minimum number of channels")
+matplotlib.pyplot.title("Relation between minimum number of channels and performance")
+# matplotlib.pyplot.legend()
 
 matplotlib.pyplot.tight_layout()
 matplotlib.pyplot.show()
