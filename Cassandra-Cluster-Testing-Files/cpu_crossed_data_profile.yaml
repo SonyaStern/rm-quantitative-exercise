@@ -1,0 +1,55 @@
+keyspace: mykeyspace
+table: mytable
+
+# Define the column information
+columnspec:
+  - name: crossed_rownames
+    size: uniform(1..50)     
+  - name: name_1
+    size: uniform(1..50)
+  - name: syct_1
+    size: uniform(50..500)  
+  - name: mmin_1
+    size: uniform(500..10000)
+  - name: mmax_1
+    size: uniform(4000..8000)
+  - name: cach_1
+    size: uniform(0..32)
+  - name: chmin_1
+    size: uniform(0..14)
+  - name: chmax_1
+    size: uniform(0..14)
+  - name: perf_1
+    size: uniform(40..70)
+  - name: estperf_1
+    size: uniform(25..50)
+  - name: name_2
+    size: uniform(1..50)
+  - name: syct_2
+    size: uniform(50..500)
+  - name: mmin_2
+    size: uniform(500..10000)
+  - name: mmax_2
+    size: uniform(4000..8000)
+  - name: cach_2
+    size: uniform(0..32)
+  - name: chmin_2
+    size: uniform(0..14)
+  - name: chmax_2
+    size: uniform(0..14)
+  - name: perf_2
+    size: uniform(40..70)
+  - name: estperf_2
+    size: uniform(25..50)
+
+# Specify the INSERT statement
+insert:
+  partitions: fixed(1)
+  batchtype: UNLOGGED
+  select: fixed(1)/24
+
+# Queries you want to test
+queries:
+  read1:
+    cql: SELECT * FROM mytable WHERE crossed_rownames = ?
+    fields: samerow
