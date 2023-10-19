@@ -1,0 +1,37 @@
+keyspace: mykeyspace
+table: mytable
+
+# Define the column information
+columnspec:
+  - name: rownames
+    size: uniform(1..24)
+  - name: name
+    size: uniform(1..255)
+  - name: syct
+    size: uniform(1..255)
+  - name: mmin
+    size: uniform(1..255)
+  - name: mmax
+    size: uniform(1..255)
+  - name: cach
+    size: uniform(1..255)
+  - name: chmin
+    size: uniform(1..255)
+  - name: chmax
+    size: uniform(1..255)
+  - name: perf
+    size: uniform(1..255)
+  - name: estperf
+    size: uniform(1..255)
+
+# Specify the INSERT statement
+insert:
+  partitions: fixed(1)
+  batchtype: UNLOGGED
+  select: fixed(1)/24
+
+# Queries you want to test
+queries:
+  read1:
+    cql: SELECT * FROM mytable WHERE rownames = ?
+    fields: samerow
